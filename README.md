@@ -13,15 +13,14 @@
 -> Created Body page also create a Outlet in body component
 -> Also NavBar will always be ahead of Outlet
 -> Created a Footer and also fixed it to the footer location
+-> Create Login Page
+-> Install Cors
+-> Cors-Install cors in backend => add middleware to with configurations ans credentials
+-> Whenever you're making API call so pass axios => { withCredentials: true }
 
-
-
-
-
-
-body 
-   navbar
-        route=/ => feed
-        route=/login => login page
-        route=/connection => Connections
-        route=/profile => Profile page
+body
+navbar
+route=/ => feed
+route=/login => login page
+route=/connection => Connections
+route=/profile => Profile page
