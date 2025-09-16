@@ -17,6 +17,12 @@
 -> Install Cors
 -> Cors-Install cors in backend => add middleware to with configurations ans credentials
 -> Whenever you're making API call so pass axios => { withCredentials: true }
+-> Install Redux Tookit and also read it
+-> Install react-redux + @reduxjs/toolkit 
+=> configureStore => Provider => createSlice => add reducer to store
+-> Understand the use of userSlice & appStore these are imported from @reactjs/toolkit
+-> Assign image of every login user also the welcome message
+-> Created a feed page so that after login in app user can redirect to feed page
 
 body
 navbar
