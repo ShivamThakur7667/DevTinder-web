@@ -23,6 +23,11 @@
 -> Understand the use of userSlice & appStore these are imported from @reactjs/toolkit
 -> Assign image of every login user also the welcome message
 -> Created a feed page so that after login in app user can redirect to feed page
+-> Created a BASE_URL so that I can pass the backend-host-url into it
+-> Also seperated every route file into components so that the code do not get mixed-up
+-> Add redux devtools in chrome
+-> Login and see if data is coming properly in the store
+-> NavBar should update as soon as user logIn
 
 body
 navbar
