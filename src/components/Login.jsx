@@ -13,10 +13,11 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post(BASE_URL + "/login", {
-        emailId,
-        password,
-      });
+      const res = await axios.post(
+        BASE_URL + "/login",
+        { emailId, password },
+        { withCredentials: true }
+      );
       // console.log(res.data);
       dispatch(addUser(res.data));
       return navigate("/");
