@@ -4,18 +4,20 @@ const UserCard = ({ user1 }) => {
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
-      <figure>
+    <div className="card bg-base-300 w-96 shadow-sm flex flex-row">
+      <figure className="w-30 mt-1 mx-5">
         <img src={user.imageURL} alt="user image" />
       </figure>
-      <div className="card-body">
-        <h2 className="card-title">{user?.firstName || "No Name"}</h2>
-        <p>
-          A card component has a figure, a body part, and inside body there are
-          title and actions parts
-        </p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+      <div className="card-body flex">
+        <h3 className="card-title justify-start">
+          {user?.firstName + " " + user?.lastName}
+        </h3>
+        <h5 className="flex">{user?.about}</h5>
+        <h6>{user?.gender}</h6>
+
+        <div className="card-actions">
+          <button className="btn btn-primary">Ignore</button>
+          <button className="btn btn-secondary">Interested</button>
         </div>
       </div>
     </div>
