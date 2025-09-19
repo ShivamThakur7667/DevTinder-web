@@ -22,7 +22,7 @@ const Login = () => {
       dispatch(addUser(res.data.user));
       return navigate("/");
     } catch (error) {
-      setError(error?.response?.data || "Something went wrong");
+      setError(error?.response?.data || "Something went wrong !!");
     }
   };
 
