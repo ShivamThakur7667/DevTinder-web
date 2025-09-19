@@ -33,7 +33,7 @@ const Body = () => {
     <div>
       <NavBar />
       <Outlet />
-      <Footer />
+      <Footer className="bottom-0" />
     </div>
   );
 };

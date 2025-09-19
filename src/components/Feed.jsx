@@ -7,9 +7,8 @@ import UserCard from "./UserCard";
 
 const Feed = () => {
   const feed = useSelector((store) => store.user);
-  console.log("feed", feed);
-
   const dispatch = useDispatch();
+
   const getFeed = async () => {
     if (feed) return;
     try {
@@ -18,19 +17,22 @@ const Feed = () => {
       });
       dispatch(addFeed(res?.data?.data));
     } catch (error) {
-      res.send(error.message);
+      console.error(error.message);
     }
   };
 
   useEffect(() => {
     getFeed();
-  });
+  }, []);
+
   return (
-    feed && (
-      <div className="flex justify-center my-10">
-        <UserCard user1={feed} />
-      </div>
-    )
+    <div className="flex flex-col min-h-[calc(100vh-64px)]">
+      {feed && (
+        <div className="my-10 flex justify-center">
+          <UserCard user1={feed} />
+        </div>
+      )}
+    </div>
   );
 };
 

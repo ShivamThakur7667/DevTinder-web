@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
+import NavBar from "./NavBar";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("sachin@gmail.com");
@@ -27,40 +28,42 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center mt-15">
-      <div className="card bg-base-300 w-96 shadow-sm">
-        <div className="card-body">
-          <h2 className="card-title justify-center">Login</h2>
-          <div>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Email ID</legend>
-              <input
-                type="text"
-                value={emailId}
-                className="input"
-                placeholder="Enter your mail here"
-                onChange={(e) => setEmailId(e.target.value)}
-              />
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Password</legend>
-              <input
-                type="password"
-                value={password}
-                className="input"
-                placeholder="Enter your password here"
-                onChange={(p) => setPassword(p.target.value)}
-              />
-            </fieldset>
-          </div>
-          <p className="text-red-500">{error}</p>
-          <div className="card-actions justify-center">
-            <button className="btn btn-primary" onClick={handleLogin}>
-              Login
-            </button>
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-1 flex items-center justify-center">
+        <div className="card bg-base-300 w-96 shadow-sm">
+          <div className="card-body">
+            <h2 className="card-title flex justify-center">Login</h2>
+            <div>
+              <fieldset className="fieldset">
+                <legend className="fieldset-legend">Email ID</legend>
+                <input
+                  type="text"
+                  value={emailId}
+                  className="input"
+                  placeholder="Enter your mail here"
+                  onChange={(e) => setEmailId(e.target.value)}
+                />
+              </fieldset>
+              <fieldset className="fieldset">
+                <legend className="fieldset-legend">Password</legend>
+                <input
+                  type="password"
+                  value={password}
+                  className="input"
+                  placeholder="Enter your password here"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </fieldset>
+            </div>
+            <p className="text-red-500">{error}</p>
+            <div className="card-actions justify-center">
+              <button className="btn btn-primary" onClick={handleLogin}>
+                Login
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
