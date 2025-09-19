@@ -6,13 +6,14 @@ const UserCard = ({ user1 }) => {
   return (
     <div className="card bg-base-300 w-96 shadow-sm flex flex-row">
       <figure className="w-30 mt-1 mx-5">
-        <img src={user.imageURL} alt="user image" />
+        <img src={user?.imageURL || ""} alt="user image" />
       </figure>
       <div className="card-body flex">
         <h3 className="card-title justify-start">
           {user?.firstName + " " + user?.lastName}
         </h3>
         <h5 className="flex">{user?.about}</h5>
+        <h6>{user?.age}</h6>
         <h6>{user?.gender}</h6>
 
         <div className="card-actions">
