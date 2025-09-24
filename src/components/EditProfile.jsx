@@ -35,7 +35,7 @@ const EditProfile = ({ user }) => {
           firstName,
           lastName,
           imageURL,
-          age: Number(age),
+          age,
           gender,
           about,
         },
@@ -111,7 +111,9 @@ const EditProfile = ({ user }) => {
                     className="select select-bordered w-full"
                     onChange={(e) => setGender(e.target.value)}
                   >
-                    <p>Select Gender</p>
+                    <option value="" disabled>
+                      Select Gender
+                    </option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Others">Others</option>
@@ -158,5 +160,4 @@ const EditProfile = ({ user }) => {
     </>
   );
 };
-
 export default EditProfile;

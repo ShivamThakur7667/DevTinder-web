@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";       //Navigate
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { BASE_URL } from "../utils/constants";
@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Body = () => {
   const dispatch = useDispatch();
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
 
   const fetchUser = async () => {
@@ -21,7 +21,7 @@ const Body = () => {
       dispatch(addUser(res.data.user));
     } catch (error) {
       if (error.status === 401) {
-        Navigate("/login");
+        navigate("/login");
       }
     }
   };
@@ -33,7 +33,7 @@ const Body = () => {
     <div>
       <NavBar />
       <Outlet />
-      <Footer className="bottom-0" />
+      <Footer />
     </div>
   );
 };

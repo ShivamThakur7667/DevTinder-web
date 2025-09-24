@@ -7,7 +7,6 @@ const Profile = () => {
   return (
     <div>
       <EditProfile user={user} />
-      {/* <UserCard/> */}
     </div>
   );
 };

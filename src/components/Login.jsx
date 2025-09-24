@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
-import NavBar from "./NavBar";
+// import NavBar from "./NavBar";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("sachin@gmail.com");
@@ -21,12 +21,11 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data.user));
-      return navigate("/");
+      return navigate("/feed");
     } catch (error) {
       setError(error?.response?.data || "Something went wrong !!");
     }
   };
-
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1 flex items-center justify-center">
