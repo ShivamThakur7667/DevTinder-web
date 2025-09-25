@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 const UserCard = ({ user1 }) => {
   const user = useSelector((store) => store.user);
+  if (!user1) return null;
 
   return (
     <div className="card bg-base-300 w-96 shadow-sm flex flex-row">
