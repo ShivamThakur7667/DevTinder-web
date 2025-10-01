@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addRequests } from "../utils/requestSlice";
+import { addRequests, removeRequest } from "../utils/requestSlice";
 import { useEffect, useState } from "react";
 
 const Requests = () => {
@@ -17,7 +17,8 @@ const Requests = () => {
           withCredentials: true,
         }
       );
-      fetchRequests();
+      dispatch(removeRequest(reqId));
+      // fetchRequests();
     } catch (error) {
       console.log(error.message);
     }
@@ -49,7 +50,6 @@ const Requests = () => {
     <div className="text-center justify-center items-center min-h-[calc(100vh-64px)]">
       {requests.map((request) => {
         console.log("Request object:", request);
-        
 
         const user = request.User;
         if (!user) {
@@ -57,8 +57,7 @@ const Requests = () => {
           return null; // skip rendering this request
         }
 
-        const { _id, firstName, lastName, imageURL, age, gender, about } =
-          user;
+        const { _id, firstName, lastName, imageURL, age, gender, about } = user;
 
         return (
           <div
@@ -82,8 +81,8 @@ const Requests = () => {
                 className="btn btn-active btn-primary my-2 mr-2"
                 onClick={() => {
                   console.log("Sending reqId:", request.data.reqId);
-                  reviewRequest("rejected", request.data.reqId)}
-                }
+                  reviewRequest("rejected", request.data.reqId);
+                }}
               >
                 Reject
               </button>
@@ -91,8 +90,8 @@ const Requests = () => {
                 className="btn btn-active btn-secondary my-2 mr-2"
                 onClick={() => {
                   console.log("Sending reqId:", request.reqId);
-                  reviewRequest("accepted", request.reqId)}
-                }
+                  reviewRequest("accepted", request.reqId);
+                }}
               >
                 Accept
               </button>
