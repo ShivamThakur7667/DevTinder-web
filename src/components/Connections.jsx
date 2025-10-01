@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnectons } from "../utils/connectionSlice";
 
-
 const Connections = () => {
   const connectionsFromStore = useSelector((store) => store.connections);
   const dispatch = useDispatch();
@@ -52,10 +51,14 @@ const Connections = () => {
   return (
     <div className="text-center justify-center items-center min-h-[calc(100vh-64px)]">
       {connections.filter(Boolean).map((connection) => {
-        const { _id, firstName, lastName, imageURL, age, gender, about } = connection;
+        const { _id, firstName, lastName, imageURL, age, gender, about } =
+          connection;
 
         return (
-          <div key={_id} className="flex m-4 p-4 bg-base-300 rounded w-1/3 mx-auto">
+          <div
+            key={_id}
+            className="flex m-4 p-4 bg-base-300 rounded w-1/3 mx-auto"
+          >
             <div>
               <img
                 alt="photo"
@@ -67,12 +70,6 @@ const Connections = () => {
               <h2 className="font-bold">{firstName + " " + lastName}</h2>
               <p>{age + ", " + gender}</p>
               <p>{about}</p>
-              <button
-                className="btn btn-error mt-2"
-                onClick={() => handleDelete(_id)}
-              >
-                Delete
-              </button>
             </div>
           </div>
         );

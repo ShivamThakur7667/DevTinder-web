@@ -2,20 +2,38 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequests } from "../utils/requestSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Requests = () => {
   const requests = useSelector((store) => store.requests);
   const dispatch = useDispatch();
+
+  const reviewRequest = async (status, reqId) => {
+    try {
+      await axios.post(
+        `${BASE_URL}/request/review/${status}/${reqId}`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      fetchRequests();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   const fetchRequests = async () => {
     try {
-      const res = await axios.get(BASE_URL + "/user/requests/recevied", {
+      const res = await axios.get(`${BASE_URL}/user/requests/received`, {
         withCredentials: true,
       });
 
-      dispatch(addRequests(res.data.data));
+      // filter out request with missing user data
+      const validRequests = res.data.data.filter((r) => r.User);
+
+      dispatch(addRequests(validRequests));
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching requests:", error);
     }
   };
 
@@ -23,22 +41,28 @@ const Requests = () => {
     fetchRequests();
   }, []);
 
-  if (!requests) {
-    return;
-  }
-  if (requests.length === 0) {
-    return <h1>No Requests Found</h1>;
+  if (!requests || requests.length === 0) {
+    return <h1 className="text-center mt-10">No Requests Found</h1>;
   }
 
   return (
     <div className="text-center justify-center items-center min-h-[calc(100vh-64px)]">
       {requests.map((request) => {
+        console.log("Request object:", request);
+        
+
+        const user = request.User;
+        if (!user) {
+          console.log("User data is missing for request:", request);
+          return null; // skip rendering this request
+        }
+
         const { _id, firstName, lastName, imageURL, age, gender, about } =
-          request.User;
+          user;
 
         return (
           <div
-            key={_id}
+            key={request.reqId}
             className="flex justify-between items-center m-4 p-4 bg-base-300 rounded w-1/2 mx-auto"
           >
             <div>
@@ -54,8 +78,22 @@ const Requests = () => {
               <p>{about}</p>
             </div>
             <div>
-              <button className="btn btn-active btn-primary my-2 mr-2">Reject</button>
-              <button className="btn btn-active btn-secondary my-2 mr-2">
+              <button
+                className="btn btn-active btn-primary my-2 mr-2"
+                onClick={() => {
+                  console.log("Sending reqId:", request.data.reqId);
+                  reviewRequest("rejected", request.data.reqId)}
+                }
+              >
+                Reject
+              </button>
+              <button
+                className="btn btn-active btn-secondary my-2 mr-2"
+                onClick={() => {
+                  console.log("Sending reqId:", request.reqId);
+                  reviewRequest("accepted", request.reqId)}
+                }
+              >
                 Accept
               </button>
             </div>
@@ -65,5 +103,4 @@ const Requests = () => {
     </div>
   );
 };
-
 export default Requests;
